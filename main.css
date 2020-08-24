@@ -1,9 +1,9 @@
 :root {
-    --main-bg-color: #000000;
+    --main-bg-color: #0C1618;
     --main-txt-color: #FBF5F3;
-    --main-txt-bold: #522B47;
-    --main-txt-italic: #7B0828;
-    --main-txt-empt: #8DAA9D;
+    --main-txt-bold: #CC59D2;
+    --main-txt-italic: #9046CF;
+    --main-txt-empt: #F487B6;
 }
 html {
     height: 100%;
@@ -53,12 +53,13 @@ h3 {
     margin-bottom:5%;
 
 }
-#contact-bar a {
-    display: inline-block
-}
-.contact-img :hover {
-    filter: grayscale(100%);
-}
+    #contact-bar a {
+        display: inline-block;
+      
+    }
+    #contact-bar a :hover {
+        filter:  drop-shadow(10px 5px 4px var(--main-txt-italic)); /* Safari 6.0 - 9.0 */
+    }
 .card-img-top {
     width: 200px;
 }
@@ -88,9 +89,12 @@ b {
 }
 a {
     color: var(--main-txt-italic);
+    text-decoration: none;
+    transition: all 0.5s ease;
 }
 a:hover{
-    color: var(--main-txt-italic)
+    color: var(--main-txt-empt)
+
 }
 p {
     color: var(--main-txt-color);
