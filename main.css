@@ -1,0 +1,56 @@
+:root {
+    --main-bg-color: #000000;
+    --main-txt-color: #FBF5F3;
+    --main-txt-bold: #522B47;
+    --main-txt-italic: #7B0828;
+    --main-txt-empt: #8DAA9D;
+}
+html {
+    height: 100%;
+    scroll-behavior:smooth;
+}
+h3, h2, h1 {
+    color: var(--main-txt-color);
+}
+
+body {
+    height: 100%;
+    background-color: #0C1618;
+}
+
+b {
+    color: var(--main-txt-bold);
+}
+i {
+    color: var(--main-txt-italic);
+}
+p {
+    color: var(--main-txt-color);
+}
+
+nav {
+    position:fixed;
+    margin-top:1%;
+    margin-left: 80%
+}
+.navlink {
+    color: var(--main-txt-bold);
+}
+
+.parallax {
+    background-image: url("sky.png");
+    height:1080px;
+}
+.parallax2 {
+    background-image: url("nosky.png");
+    height:1080px;
+}
+.caption {
+    width: 100%;
+    height: 100%;
+    background-image: url("imageheader2.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
