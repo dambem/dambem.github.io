@@ -43,7 +43,7 @@ nav {
 }
 .parallax2 {
     background-image: url("nosky.png");
-    height:1080px;
+    height:100%;
 }
 .caption {
     width: 100%;
