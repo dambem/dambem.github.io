@@ -102,6 +102,7 @@ p {
 }
 
 .parallax {
+
     background-image: url("sky.png");
     height:1080px;
 }
@@ -114,7 +115,32 @@ p {
     height: 100%;
     background-image: url("imageheader2.png");
     background-attachment: fixed;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+@media only screen and (max-width: 1024px) {
+    .card-container{
+        display:block;
+    }
+    .card-container a{
+        justify-content: center;
+    }
+    .parallax {
+        /* The file size of this background image is 93% smaller
+       to improve page load speed on mobile internet connections */
+        background-image: url(sky_mob.png);
+    }
+
+    .parallax2 {
+        /* The file size of this background image is 93% smaller
+       to improve page load speed on mobile internet connections */
+        background-image: url(nosky_mob.png);
+    }
+
+    .caption {
+        /* The file size of this background image is 93% smaller
+       to improve page load speed on mobile internet connections */
+        background-image: url(imageheader_mob.png);
+    }
 }
