@@ -16,6 +16,31 @@ h3, h2, h1 {
     margin-bottom:1%;
     text-align:center;
 }
+h3 {
+    margin-top: 1%;
+    margin-bottom:1%;
+}
+.row  {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.card-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 768px) {
+        flex-flow: column;
+    }
+}
+
+.card {
+    margin-left: 10%;
+    margin-right: 10%;
+}
 .contact-img {
     max-width: 100px;
     padding-left: 1em;
@@ -25,14 +50,21 @@ h3, h2, h1 {
 #contact-bar {
     display: flex;
     justify-content: center;
+    margin-bottom:5%;
 
 }
 #contact-bar a {
     display: inline-block
 }
+.contact-img :hover {
+    filter: grayscale(100%);
+}
+.card-img-top {
+    width: 200px;
+}
 nav {
     right: 0;
-    position:fixed;
+    position: fixed;
     margin-top: 0.2%;
     margin-right: 1%;
 }
@@ -54,8 +86,11 @@ body {
 b {
     color: var(--main-txt-bold);
 }
-i {
+a {
     color: var(--main-txt-italic);
+}
+a:hover{
+    color: var(--main-txt-italic)
 }
 p {
     color: var(--main-txt-color);
