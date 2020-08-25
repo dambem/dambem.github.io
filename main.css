@@ -144,4 +144,7 @@ p {
         background-image: url("imageheader_mob.png");
         overflow-x: auto;
     }
+    .contact-img {
+        max-width:90px;
+    }
 }
