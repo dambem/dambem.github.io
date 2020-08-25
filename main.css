@@ -65,19 +65,11 @@ h3 {
     width: 200px;
 }
 nav {
-    z-index= 99;
+    z-index: 99;
     right: 0;
     position: fixed;
     margin-top: 0.2%;
     margin-right: 1%;
-}
-#bottom_fade {
-    width:600px;
-    height:200px;
-    z-index: 99;
-    position: fixed;
-    bottom: 0%;
-    background-image: url("bottom-fade.png");
 }
 
 
