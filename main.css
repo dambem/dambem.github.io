@@ -121,6 +121,9 @@ p {
     .card-container a{
         justify-content: center;
     }
+    a.styles__card-link___2h-e{
+        width:90%
+    }
     .parallax {
         /* The file size of this background image is 93% smaller
        to improve page load speed on mobile internet connections */
