@@ -1,1 +1,14 @@
-﻿
+#navbar {
+    border-radius: 0px 0px 0px 40px;
+}
+#welcome_badge {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.distImage {
+      /* Add the blur effect */
+  filter: saturate(2px);
+  -webkit-filter: saturate(80%);
+
+}

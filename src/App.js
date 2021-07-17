@@ -1,179 +1,322 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import Navbar from "./Components/Navbar";
-import Section from "./Components/Section";
-import Card from "./Components/Card";
-import dummyText from "./DummyText";
-import aboutText from "./About";
-import { NavLink, Switch, Route } from 'react-router-dom';
-import { Link, animateScroll as scroll } from "react-scroll";
+import React, { useState,Component, forwardRef, useRef, useMemo } from 'react';
 import {
-    UserCard,
-    ProductCard,
-    TaggedContentCard,
-    FlippingCard,
-    FlippingCardFront,
-    FlippingCardBack,
-    RecipeCard,
-    NewsHeaderCard,
-    CryptoCard,
-    PaymentCard,
-    JobListingCard
-} from "react-ui-cards"
-import './App.css';
-const Main = () => (
-    <div>
-        <div className='home' >
-            <div className="parallax">
-                <div className="caption">
-                    <div className="parallax2"></div>
-             </div>
-            </div>
-        </div>
+    BrowserRouter as Router
+} from "react-router-dom"
+import {
+  Anchor,
+  Box,
+  Button,
+  Collapsible,
+  Heading,
+  Header,
+  Menu,
+  Grommet,
+  Layer,
+  Grid,
+  Image,
+  Distribution,
+  Text,
+  ResponsiveContext,
+  grommet,
+  Stack,
+  Footer,
+  Main,
+} from 'grommet';
+import {deepMerge} from "grommet/utils";
+import {portfolio_theme} from "./portfolio-theme";
+import { FormClose, Notification, Menu as MenuIcon } from 'grommet-icons';
+import styled from 'styled-components';
+import { Twitter, Github, Linkedin, CaretDown, Achievement} from 'grommet-icons';
+import './index.css'
+const StyledAnchor = styled(Anchor)`
+  font-weight: 200;
+`;
+const theme = deepMerge(grommet, portfolio_theme);
+// const theme = {
+//   global: {
+//     colors: {
+//       brand: '#272727',
+//       brand2: '#2B50AA',
+//       brand3: '#FF9FE5',
+//       brand4: '#FFD4D4',
+//       brand5: '#FF858D',
+//     },
+//     font: {
+//       family: 'Inconsolata',
+//       size: '14px',
+//       height: '20px',
+//     },
+//   },
+// };
 
+const SideBarContent = () => (
+  <div>
+    Some content
+  </div>
+);
+
+const DoubleFooter = () => (
+  <Grommet theme={grommet}>
+    <Main background="light-4" elevation="large" pad="large" border>
+      <Text margin="small" size="xsmall">
+        Main Content
+      </Text>
+      <Box flex />
+    </Main>
+
+  </Grommet>
+);
+
+const Distribution_ex = () => (
+
+
+<Distribution
+  
+  values={[
+    { value: 50, color: 'light-3', src:"/sheffsense.jpg"},
+    { value: 30, color: 'brand', src:"/diss.PNG" },
+    { value: 20, color: 'graph-0', src:"/mapofsensors.PNG" },
+    { value: 10, color: 'brand', src:"/sela.png" },
+    { value: 5, color: 'light-3', src:"/particlephotography.PNG" },
+    
+  ]}
+>
+  {value => (
+    // <Box pad="small" background={value.color} fill>
+    <Box fill>
+    {/* <Text size="large">{value.value}</Text> */}
+      <Image src={value.src} fit="cover" className="distImage"/>
+    </Box>
+  )}
+</Distribution>
+);
+const BraggingRights = () => (
+    <div id="testing" 
+        style={{ margin: '2.5%' }}
+    >
+        <h2> Bragging Rights </h2>
+        <h3> Programming Languages: </h3>
+        <ul>
+            <li> Python (Machine Learning Libraries): Expert</li>
+            <li> Python (Web): Proficient </li>
+            <li> Javascript (Native): Proficient </li>
+            <li> Javascript (React): Proficient </li>
+            <li> C (Native): Experienced </li>
+            <li> C (CUDA GPU) : Experienced </li>
+            <li> C++ : Experienced  </li>
+            <li> z/OS + PLX (IBM Mainframe) : Experienced </li>
+        </ul>
+        <h3> Actual Languages </h3>
+        <ul>
+        <li> Polish:   Fluent  </li>
+        <li> English:  Fluent (Second Language) </li> 
+        <li> Russian:  Novice   </li>
+        </ul>
     </div>
 );
-const About = () => (
-    <div className="about">
-        <p> <b> 5th Year Computer Science </b> student at the University of Sheffield and recognized leader of the <a href="https://www.sela-sheffield.org"> Sheffield Engineering Leadership Academy </a> <br/> Active speaker, writer and maker of random software projects. Work with Javascript, Python, C++ <b> (and even z/OS and PLX!) </b> <br />
-        </p>
-        <h3> Programming Languages: </h3>
-        <p> <b>|</b> Javascript <b>|</b> Python <b>|</b> C++ <b>|</b> Java <b>|</b> z/OS <b>|</b> PLX <b>|</b> 
-        </p>
-        <h3> Actual Languages </h3>
-        <p> English:  Fluent (Second Language) <br />
-            Polish:   Fluent 
-        </p>
 
-        <h3> Recognition & Awards </h3>
-        <p> IBM Recognized Speaker/ Presenter
-        <br/> Graduate of the Sheffield Engineering Leadership Academy
-        <br/>  IBM Recognized Educator
-        <br /> Interskill - Mainframe Specialist - z/OS UNIX System Services 
-        <br /> IBM University Business Challenge Finalist 2017 
-        <br /> Denise Coates Scholarship 2017-2019
-         <br /> <a href="https://www.linkedin.com/in/bemben">See More </a></p>
-        </div>
-)
 
-const Portfolio = () => (
-    <div className="portfolio">
-        <h2> Software Projects </h2>
-        <div className="card-container">
-            <TaggedContentCard
-                href='https://github.com/dambem/diss-quad-gait'
-                thumbnail='https://raw.githubusercontent.com/dambem/diss-quad-gait/master/graphs/3dgraph.png'
-                title='Dissertation'
-                description='Comparison of simulated quadruped locomotion to the Dynamic Similarity Hypothesis'
-                tags={[
-                    'Research',
-                    'Python',
-                    'Robotics'
-                ]}
-            />
-            <TaggedContentCard
-                href='https://github.com/dambem/ClimateMonitorV2'
-                thumbnail='mapofsensors.PNG'
-                title='SheffSense (Invisible Pollution)'
-                description='A funded project for the Festival of The Mind 2020'
-                tags={[
-                    'Javascript',
-                    'IoT',
-                    'NodeJS'
-                ]}
-            />
-            <TaggedContentCard
-                href='https://github.com/dambem/Particle_Photography'
-                thumbnail='particlephotography.PNG'
-                title='Particle Photography'
-                description='A small hobby project aimed towards converting images to particles'
-                tags={[
-                    'Javascript',
-                    'Python',
-                    'Image Processing'
-                ]}
-            />
-        </div>
-        <h2> Talks and Blogs </h2>
 
-        <div className="card-container">
-            <TaggedContentCard
-                href='https://www.youtube.com/watch?v=vpitbpPLkko'
-                thumbnail='sela.png'
-                title='Explaining the Urban Flows Observatory to the public'
-                description='Talking about leading a project to increase outreach activities and get the general public engaged with the urban flows observatory'
-                tags={[
-             
-                    'Communication',
-                    'Teamwork'
-                ]}
-            />
-            <TaggedContentCard
-                href='https://compsciblog.group.shef.ac.uk/lessons-from-my-placement/'
-                thumbnail='compsciblog.PNG'
-                title='Lessons From My Placement (Or working 9 till 5, what a way to learn Computing)'
-                description='A blog post on dealing with securing placements without experience, and how to effectively work in that environment'
-                tags={[
-                    'Writing',
-                    'Work'
-                ]}
-            />
-            <TaggedContentCard
-                href='https://www.bbc.co.uk/news/uk-england-lincolnshire-39948303'
-                thumbnail='bbc_news_logo.png'
-                title='Election 2017: Living in Boston - the UKs most anti-EU town'
-                description='Interviewed by the BBC to talk about being a migrant in an anti-EU town'
-                tags={[
-                    'Politics',
-                ]}
-            />
-        </div>
-    </div>
-    )
-const Contact = () => (
-    <div className="contact">
-        <p> The following are my contact details, for any business/professional enquiries email <b> dbemben1@sheffield.ac.uk </b> <br/>Talk to me about anything involving programming (Python, Javascript, C), public speaking, or how to set up projects at university!</p>
-        <div id='contact-bar'>
-            <a href="https://www.linkedin.com/in/bemben"><img class="img-fluid contact-img" src="linkedinicon.png" /></a>
-            <a href="https://github.com/dambem"><img class="img-fluid contact-img" src="githubicon.png" /> </a>
-            <a href="mailto:dbemben1@sheffield.ac.uk"><img class="img-fluid contact-img" src="emailicon.png" /> </a>
-            <a href="https://www.instagram.com/damianbemben/"><img class="img-fluid contact-img" src="instagramicon.png" /> </a>
-        </div>
-     </div>
-    )
-class App extends Component { 
-    render() {
-        return (
-            <div className="App">
-                <Navbar />
-                <Main />
+const HeaderView = () => (
+  <Grommet>
+  <Header background="light-4" pad="medium" height="xsmall">
+  {/* <Anchor
+    href="https://github.com/dambem"
 
-                <Section
-                    title="About"
-                    dark={true}
-                    id="about"
-                />
-                <About/>
-                <Section
-                    title="Portfolio"
-                    dark={true}
-                    id="portfolio"
-                />
-                <Portfolio/>
-                <Section
-                    title="Contact"
-                    dark={true}
-                    id="contact"
-                />
-                <Contact/>
-
-            </div>
-
-            )
+    label="damian bemben"
+  /> */}
+  <Heading level="3">damian bemben</Heading>
+  <ResponsiveContext.Consumer>
+    {size =>
+      size === 'small' ? (
+        <Box justify="end">
+          <Menu
+            a11yTitle="Navigation Menu"
+            dropProps={{ align: { top: 'bottom', right: 'right' } }}
+            justifyContent="center"
+            icon={<MenuIcon color="brand" />}
+            items={[
+              {
+                icon: <Twitter />,
+                href: 'https://twitter.com/dambem',
+                label: "twitter",
+                
+              },
+              {
+                icon: <Github />,
+                href: 'https://github.com/dambem',
+                label: "github"
+              },
+              {
+                icon: <Linkedin />,
+                href: 'https://www.linkedin.com/in/bemben/',
+                label: "linkedin"
+              },
+            ]}
+          />
+        </Box>
+      ) : (
+        <Box justify="end" direction="row" gap="medium">
+          
+          <Anchor href="https://twitter.com/dambem"  icon={<Twitter />} />
+          <Anchor href="https://github.com/dambem" icon={<Github />} />
+          <Anchor href="https://www.linkedin.com/in/bemben/" icon={<Linkedin />} />
+        </Box>
+      )
     }
+  </ResponsiveContext.Consumer>
+</Header>
+</Grommet>
+
+);
+const FooterView = () => (
+  <Footer
+  background="dark-2"
+  pad={{ horizontal: 'large', vertical: 'small' }}
+>
+  <Box direction="row" gap="small">
+    <Text alignSelf="center">damian bemben</Text>
+  </Box>
+  <Text textAlign="center" size="small">
+    © 2021 Copyright (just kidding, this stuff is free to use)
+  </Text>
+</Footer>
+);
+const MainApplication = () => {
+  const myRef = useRef(null);
+  const executeScroll = () => {
+    if (myRef.current) {
+      myRef.current.scrollIntoView({behavior: 'smooth'});
+    }
+  } 
+  
+
+  const [darkMode, setDarkMode] = React.useState(false);
+  const [showSidebar, setState] = React.useState(false);
+  return (
+    <Grommet full theme={theme} themeMode={darkMode ? "dark" : "light"}>
+      
+      <ResponsiveContext.Consumer>
+          {size => (
+            <Box fill> 
+
+              <Box direction='row' flex>
+                <Box
+                  flex
+                  alignContent="stretch"
+                  
+                >
+                  <Stack anchor="center">
+                    <Image src="sela.png"></Image>
+                    {/* <Distribution_ex /> */}
+                    <Box
+                      background='light-2'
+                      id="welcome_badge"
+                      align='center'
+                      justify='center'
+                    >
+                      <Heading level="3" >hi, i'm <b>damian bemben</b>, <br></br> welcome to my portfolio!</Heading>
+                      <Button
+                      icon={<Notification />}
+                      onClick={() => setState(!showSidebar)}
+                      id='rotator'
+                      label="view my cv"
+                      />
+                      <br></br>
+                      <Button
+                      icon={<CaretDown />}
+                      onClick={executeScroll}
+                      id='rotator'
+                      label="examples"
+                      />
+                    
+                    </Box>
+                    
+                  </Stack>
+                  <Box
+                    flex
+                    align='center'
+                    >
+                    
+                    <h1 ref={myRef}></h1> 
+                    <BraggingRights />
+                   
+                    <BraggingRights/>
+                    
+                    
+                  </Box>
+                </Box>
+                  
+                {(!showSidebar || size !== 'small') ? (
+                  <Collapsible direction="horizontal" open={showSidebar}>
+                    <Box
+                      flex
+                      width='medium'
+                      background='light-2'
+                      elevation='small'
+                      align='center'
+                      justify='center'
+                    
+                    >
+                      <BraggingRights />
+                      {/* <Button
+                        label="Toggle Theme"
+                        primary
+                        alignSelf="center"
+                        margin="large"
+                        onClick={() => setDarkMode(!darkMode)}
+                      /> */}
+                    </Box>
+                  </Collapsible>
+                ): (
+                  <Layer>
+                    <Box
+                      background='light-2'
+                      tag='header'
+                      justify='end'
+                      align='center'
+                      direction='row'
+                    >
+                      <Button
+                        icon={<FormClose />}
+                        onClick={() => setState(false)}
+                      />
+                    </Box>
+                    <Box
+                      fill
+                      background='light-2'
+                      align='center'
+                      justify='center'
+                    >
+                      <BraggingRights />
+                    </Box>
+                  </Layer>
+                )}
+              </Box>
+            </Box>
+
+          )}
+
+
+        </ResponsiveContext.Consumer>
+    </Grommet>
+  );
 };
 
+class App extends Component {
 
+  render() {
 
+    return (
+      <Grommet full theme={theme}>
+        <HeaderView/>
+        <MainApplication/>
+        
+        <FooterView/>
+      </Grommet>
+
+    );
+  }
+}
 
 export default App;
